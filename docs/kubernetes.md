@@ -18,7 +18,7 @@ kubcetl create ns lab-00
 #### edit manifest
 Update the manifest file `kubernetes/00-cluster-local-zk/fid.yaml` and paste the license key. Look for `PASTE_LICENSE_HERE` and replace it.
 
-![alt text](/Users/gnanirahulnutakki/Documents/CLOUD/Github/cloud-native-lab/Images/AddLicenseStandalone.png)
+![License](https://github.com/radiantlogic-devops/cloud-native-lab/blob/changes/Images/AddLicenseStandalone.png)
 
 
 #### run

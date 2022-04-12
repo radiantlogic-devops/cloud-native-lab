@@ -205,13 +205,13 @@ helm upgrade --namespace=helm-lab fid radiantone/fid --set image.tag = 7.4.0
 **Removing FID deployment**
 
 ```console
-helm delete --namespace=<name space> <release name>
+helm uninstall --namespace=<name space> <release name>
 ```
 
 Example
 
 ```console
-helm delete --namespace=helm-lab fid
+helm uninstall --namespace=helm-lab fid
 
 Verify
 
@@ -228,13 +228,13 @@ You not see any fid pods, move to the next step
 * To remove Zookeeper deployment run the command below
 
 ```console
-helm delete --namespace=<name space> <release name>
+helm uninstall --namespace=<name space> <release name>
 ```
 
 Example
 
 ```console
-helm delete --namespace=helm-lab zk
+helm uninstall --namespace=helm-lab zk
 ```
 
 Verify
