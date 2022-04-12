@@ -1,5 +1,6 @@
 ## Before you start
 * FID or Zookeeper running locally on your machine are stopped.
+* Make sure you have a running kubernetes cluster (minikube, EKS, AKS, GKE, k3s, k8s)
 * Make sure that kubectl is configured to access the right cluster
 
         kubectl cluster-info
@@ -15,7 +16,10 @@ git clone https://github.com/radiantlogic-devops/kubernetes.git
 kubcetl create ns lab-00
 ```
 #### edit manifest
-Update the manifesl file `kubernetes/00-cluster-local-zk/fid.yaml` and paste the license key. Look for `PASTE_LICENSE_HERE` and replace it.
+Update the manifest file `kubernetes/00-cluster-local-zk/fid.yaml` and paste the license key. Look for `PASTE_LICENSE_HERE` and replace it.
+
+![alt text](/Users/gnanirahulnutakki/Documents/CLOUD/Github/cloud-native-lab/Images/AddLicenseStandalone.png)
+
 
 #### run
 ```
