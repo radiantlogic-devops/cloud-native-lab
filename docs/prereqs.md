@@ -1,5 +1,6 @@
 ### docker
 * docker desktop or docker runtime
+* For windows if available use ```Windows Terminal``` and connect to WSL
 ### kubernetes cluster
 * Kubernetes 1.18+
 * minikube or eks or any other cluster

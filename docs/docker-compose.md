@@ -1,5 +1,5 @@
 
-## Before you start
+## **Before you start**
 * FID or Zookeeper running locally on your machine are stopped.
 * All containers from previous section are stopped and removed
 
@@ -13,7 +13,7 @@ Clone the docker-compose samples repo
 git clone https://github.com/radiantlogic-devops/docker-compose.git
 ```
 
-## Standalone FID
+## **Standalone FID**
 * Change to 00-standalone folder
 * Edit .env file and set the values 
 
@@ -47,7 +47,7 @@ The default username/password is
 ```
 docker-compose down -v
 ```
-## Cluster FID + External Zookeeper
+## **Cluster FID + External Zookeeper**
 ### External Zookeeper ensemble
 * Change to 03-external-zk folder
 
@@ -66,7 +66,7 @@ docker-compose ps
 ```
 When the container shows healthy status, proceed to next step
 
-### FID Cluster
+### **FID Cluster**
 
 * Change to 02-cluster-ext-zk folder
 
@@ -98,9 +98,7 @@ The default username/password is
     cn=Directory Manager
     secret1234
 
-#### stop
-
-## Cleanup
+## **Cleanup**
 
 ```
 cd 02-cluster-ext-zk
