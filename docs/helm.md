@@ -29,7 +29,7 @@ Verify
 ```console
 helm repo list
 ```
-In the output you should see "radiantone" added along with other repositories if you have any.
+In the output you should see **"radiantone" added along with other repositories if you have any.**
 
 (Optional) To update the repo
 ```console
@@ -44,7 +44,6 @@ helm repo update
 ```console
 kubectl create namespace helm-lab
 ```
-
 Verify:
 
 * To verify if the namespace has been created, run the command below
@@ -62,9 +61,19 @@ helm install --namespace=helm-lab zookeeper radiantone/zookeeper
 ```
 * The above command deploys zookeeper (default with replicaCount=3)
 * You will see following response printed to the console
-```console
-
 ```
+helm install --namespace=helm-lab zookeeper radiantone/zookeeper
+NAME: zookeeper
+LAST DEPLOYED: Wed Apr 13 17:15:31 2022
+NAMESPACE: helm-lab
+STATUS: deployed
+REVISION: 1
+NOTES:
+1. Get the application URL by running these commands:
+  export POD_NAME=$(kubectl get pods --namespace helm-lab -l "app.kubernetes.io/name=zookeeper,app.kubernetes.io/instance=zookeeper" -o jsonpath="{.items[0].metadata.name}")
+  echo "Visit http://127.0.0.1:8080/commands to use your application"
+  kubectl --namespace helm-lab port-forward $POD_NAME 8080:8080
+  ``` 
 
 Verify
 
@@ -74,7 +83,9 @@ Verify
 kubectl get pods -n helm-lab
 ```
 * You will see three zookeeper pods "zookeeper-0/1/2"
-
+<br>
+<img src="../Images/zookeeperpods.png" alt="zk" style="height: 150px; width:500px;"/>
+<br> 
 
 **List Zookeeper releases**
 
@@ -83,15 +94,6 @@ kubectl get pods -n helm-lab
 ```console
 helm list --namespace=helm-lab
 ```
-
-**Upgrade a Zookeeper Release (optional)**
-
-* To upgrade an existing or deployed zookeeper releasem, run the below command
-
-```console
-helm upgrade --namespace=helm-lab zk radiantone/zookeeper
-```
-
 #### **Deploying FID**
 
 **Install FID**
@@ -105,6 +107,9 @@ helm install --namespace=helm-lab fid radiantone/fid \
 --set fid.license="<FID cluster license>" \
 --set fid.rootPassword="test1234"
 ```
+<br>
+<img src="../Images/fid.png" alt="fid" style="height: 250px; width:2000px;"/>
+<br> 
 
 **IMPORTANT NOTE** : Curly brackets in the liense must be escaped --set fid.license="\\{rlib\\}xxx"
 
@@ -116,6 +121,9 @@ Verify
 kubectl get pods -n helm-lab
 ```
 * You will see  fid pod ```fid-0```
+<br>
+<img src="../Images/fid2.png" alt="fid2" style="height: 150px; width:500px;"/>
+<br> 
 
 #### **Accessing Control Panel**
 * To access the control panel run the command below
@@ -190,7 +198,7 @@ helm upgrade --namespace=helm-lab fid radiantone/fid --set image.tag = 7.4.0
 ## **Cleanup**
 
 
-* To remove the Zookeerp/ FID helm deployments run the commands below
+* To remove the Zookeeper / FID helm deployments run the commands below
 
 **Removing FID deployment**
 
@@ -224,7 +232,7 @@ Verify
 kubectl get all -n helm-lab
 ```
 
-You will not see any zk-zookeeper pods.
+You will not see any zookeeper pods.
 
 **Delete Namespace**
 
