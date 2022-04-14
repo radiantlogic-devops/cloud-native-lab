@@ -1,5 +1,5 @@
 ## minikube start
-minikube is local Kubernetes, focusing on making it easy to learn and develop for Kubernetes.
+Minikube is local Kubernetes, focusing on making it easy to learn and develop for Kubernetes.
 
 All you need is Docker (or similarly compatible) container or a Virtual Machine environment, and Kubernetes is a single command away: ```minikube start```
 
@@ -10,7 +10,7 @@ All you need is Docker (or similarly compatible) container or a Virtual Machine 
 * Internet connection
 
 ** If using Docker Desktop, increase the memory allocation to 16GB
-** If you already started minikube, stop it, delete it and configure with thefollowing settings
+** If you already started minikube, stop it, delete it and configure with the following settings
 
 ### Settings
 * Increase the default cpu/memory allocation (requires restart)
@@ -40,4 +40,11 @@ minikube dashboard
 
 ```
 minikube stop
+```
+### Delete Minikube
+
+* To delete the minikube cluster
+
+```
+minikube delete
 ```
