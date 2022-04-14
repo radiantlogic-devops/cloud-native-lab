@@ -57,12 +57,18 @@ In the list of namespaces from the output you should see ```lab-00```
 kubectl apply -f kubernetes/generic/00-cluster-local-zk/fid.yaml -n lab-00
 ```
 #### Check status 
-To get the status of pods (Pending/Running/Succeeded/Failed/Unknown)
+
+* To get the status of pods (Pending/Running/Succeeded/Failed/Unknown)
 
 ```
 kubectl get po -n lab-00
 ```
 When the pod shows 1/1 running status, proceed to the next step. It could take anywhere from 2 to 5 minutes to start.
+
+* To view logs
+```
+kubectl logs -f fid-0 -n helm-lab
+```
 
 ####Accessing the Control Panel
 ** Open a new command prompt for port forwarding.

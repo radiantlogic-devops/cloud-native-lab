@@ -10,9 +10,9 @@ theme:
   nav_style: light
   navigation_depth: 5
   features:
-    #- navigation.expand
+    - navigation.expand
     - navigation.sections
-    #- navigation.top
+    - navigation.top
     - navigation.tabs
     - search.highlight
     - search.share
@@ -20,7 +20,7 @@ theme:
 
 nav:
 - Home: index.md
-- Pre-requisites: prereqs.md
+- Prerequisites: prereqs.md
 - Docker: docker.md
 - Docker Compose: docker-compose.md
 - minikube: minikube.md
