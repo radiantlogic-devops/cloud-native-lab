@@ -73,7 +73,7 @@ NOTES:
   export POD_NAME=$(kubectl get pods --namespace helm-lab -l "app.kubernetes.io/name=zookeeper,app.kubernetes.io/instance=zookeeper" -o jsonpath="{.items[0].metadata.name}")
   echo "Visit http://127.0.0.1:8080/commands to use your application"
   kubectl --namespace helm-lab port-forward $POD_NAME 8080:8080
-  ``` 
+``` 
 
 Verify
 * To verify if zookeeper has been deoployed successfully, run the command below
