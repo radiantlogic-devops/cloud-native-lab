@@ -38,16 +38,16 @@ Verify:
 kubectl get namespace
 ```
 
-In the list of namespaces from the oputput you will find lab-00
+In the list of namespaces from the output you should see ```lab-00```
 
 #### Edit Manifest File (fid.yaml)
 
-* From the cloned/downloaded folder navigate to kubernetes/generic/00-cluster-local-zk folder and open the manifest file "fid.yaml" in your code editor
-
+* From the cloned/downloaded folder navigate to kubernetes/generic/00-cluster-local-zk folder and open the manifest file ```fid.yaml``` in your code editor.
 * Update the manifest file `kubernetes/generic/00-cluster-local-zk/fid.yaml` and paste the license key. Look for `PASTE_LICENSE_HERE`, replace and save the file.
 <br>
 <img src="../Images/AddLicenseStandalone.png" alt="License" style="height: 200px; width:300px;"/>
 <br> 
+* For Mac M1, update the image ```radiantone/fid:7.4.0-arm64```
 
 ### **Deploying Standalone FID**
 
@@ -62,12 +62,12 @@ To get the status of pods (Pending/Running/Succeeded/Failed/Unknown)
 ```
 kubectl get po -n lab-00
 ```
-When the pod shows 1/1 running status, proceed to the next step. It could take anywhere for 2 to 5 minutes to start.
+When the pod shows 1/1 running status, proceed to the next step. It could take anywhere from 2 to 5 minutes to start.
 
-####Accessing the control Panel
-Open a new command prompt for port forwarding
+####Accessing the Control Panel
+** Open a new command prompt for port forwarding.
 
-To access the control panel of FID, run the command below
+* To access the control panel of FID, run the command below
 
 ```console
 kubectl port-forward svc/fid-cp -n lab-00 7070 8089
@@ -82,6 +82,8 @@ The default username/password is
     secret1234
 
 #### **Accessing LDAP Service**
+** Open a new command prompt for port forwarding.
+
 * To access the LDAP service run the command below
 
 ```console
@@ -97,7 +99,7 @@ The default username/password is
 
 ### **Cleanup**
 
-Run the command below to delete the above FID deployment
+* Run the command below to delete the above FID deployment
 
 ```console
 kubectl delete -f kubernetes/generic/00-cluster-local-zk/fid.yaml -n lab-00
@@ -116,7 +118,7 @@ kubectl get all -n lab-00
 
 You will no more see any zookeeper or fid pods. Once you verify that there are no zookeeper and FID pods, proceed to the next step
 
-Run the following command to delete the namespace created
+* Run the following command to delete the namespace created
 
 ```console
 kubectl delete ns lab-00
@@ -149,7 +151,7 @@ kubectl create ns lab-01
 
 ### **Deploying Zookeeper**
 
-Run the command below to deploy zookeeper
+* Run the command below to deploy zookeeper
 
 ```console
 kubectl apply -f kubernetes/generic/01-external-zk/zk.yaml -n lab-01
@@ -184,7 +186,7 @@ kubectl exec -it zookeeper-2 -n lab-01 -- bash -c "export JAVA_HOME=/opt/radiant
 
 ### **Deploying FID**
 
-Run the command below to deploy FID (1 node)
+* Run the command below to deploy FID (1 node)
 
 ```console
 kubectl apply -f kubernetes/generic/02-cluster-ext-zk/fid.yaml -n lab-01
@@ -206,9 +208,9 @@ When the pod fid-0 shows 1/1 running status, proceed to next step
 
 It might take anywhere from 3 to 5 minutes for the pod to be ready
 
-####Accessing the control Panel
+####Accessing the Control Panel
 
-To access the control panel of FID, run the command below
+* To access the control panel of FID, run the command below
 
 ```console
 kubectl port-forward svc/fid-cp -n lab-01 7070 8089
@@ -235,7 +237,7 @@ The default username/password is
     test1234
 
 #### **Scaling Up FID**
-Add a new node to the cluster
+* Add a new node to the cluster
 
 ```console
 kubectl scale sts/fid --replicas=2 -n lab-01
@@ -243,15 +245,15 @@ kubectl scale sts/fid --replicas=2 -n lab-01
 
 Verify
 
-* To verify if fid has been scaled up successfully, run the command below
+To verify if fid has been scaled up successfully, run the command below
 
 ```console
 kubectl get pods -n lab-01
 ```
-* You will see 2 fid pods ```fid-0 fid-1```
+You will see 2 fid pods ```fid-0 fid-1```
 
 #### **Scaling Down FID**
-Remove a node from the cluster
+* Remove a node from the cluster
 
 ```console
 kubectl scale sts/fid --replicas=1 -n lab-01
@@ -259,16 +261,16 @@ kubectl scale sts/fid --replicas=1 -n lab-01
 
 Verify
 
-* To verify if fid has been scaled down successfully, run the command below
+To verify if fid has been scaled down successfully, run the command below
 
 ```console
 kubectl get pods -n helm-lab
 ```
-* You will see 1 fid pod ```fid-0```
+You will see 1 fid pod ```fid-0```
 
 ### **Cleanup**
 
-Run the command below to delete the FID deployment
+* Run the command below to delete the FID deployment
 
 ```console
 kubectl delete -f kubernetes/generic/02-cluster-ext-zk/fid.yaml -n lab-01
@@ -281,9 +283,7 @@ To verify that the FID deployment has been deleted, run the command below
 kubectl get all -n lab-01
 ```
 
-You will no more see the "fid-0" pod, once you verify that there are no more fid pods, proceed to the next step
-
-Run the command below to delete the zookeeper deployment
+* Run the command below to delete the zookeeper deployment
 
 ```console
 kubectl delete -f kubernetes/generic/01-external-zk/zk.yaml -n lab-01
@@ -297,9 +297,7 @@ To verify that the Zookeeper deployment has been sucessfully deleted, run the co
 kubectl get all -n lab-01
 ```
 
-You will no more see any zookeeper-0,1,2 pods. Once you verify that there are no zookeeper pods, proceed to the next step
-
-Run the following command to delete the namespace created
+* Run the following command to delete the namespace created
 
 ```console
 kubectl delete ns lab-01
@@ -312,4 +310,4 @@ To verify that the namespace has been deleted, run the command below
 ```console
 kubectl get ns
 ```
-You should no more see the "lab-01" namespace in the list fo namepsaces.
+You should no more see the "lab-01" namespace in the list fo namespaces.

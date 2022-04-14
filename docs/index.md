@@ -8,3 +8,5 @@ This lab is divided into four sections:
 * [Docker Compose](./docker-compose.md)
 * [Kubernetes](kubernetes.md)
 * [Helm](helm.md)
+
+Commands from each section can be copied and run directly. Some optional steps can be skipped.
