@@ -76,6 +76,7 @@ NOTES:
 ``` 
 
 Verify
+
 * To verify if zookeeper has been deoployed successfully, run the command below
 
 ```console
