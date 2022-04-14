@@ -8,3 +8,5 @@ This lab is divided into four sections:
 * Docker Compose
 * Kubernetes
 * Helm
+
+Commands from each section can be copied and run directly. Some option steps can be skipped.

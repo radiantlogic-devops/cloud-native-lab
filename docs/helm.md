@@ -1,8 +1,8 @@
 ## **Before you start**
 
-* Make sure [Helm](https://helm.sh/docs/intro/install/) is installed and available.
-* Make sure you have a running kubernetes cluster (minikube, EKS, AKS, GKE, k3s, k8s)
-* Make sure kubectl is configured to access the right cluster. You can verify that by running the following commands
+* [Helm](https://helm.sh/docs/intro/install/) is installed
+* A running kubernetes cluster (minikube, EKS, AKS, GKE, k3s, k8s)
+* kubectl is configured to access the right cluster. Verify by running the following commands:
 ```console
 kubectl cluster-info
 ```
@@ -12,11 +12,11 @@ kubectl get nodes
 
 ## **Add Helm Repository**
 
-The radiantone helm repository is host at https://radiantlogic-devops.github.io/helm
+The radiantone helm repository is hosted at https://radiantlogic-devops.github.io/helm
 
 #### **Add radiantone repository**
 
-* Run the command below to add the radiantone repo
+* Run the command below to add ```radiantone``` repo
 
 ```console
 helm repo add radiantone https://radiantlogic-devops.github.io/helm
@@ -24,12 +24,12 @@ helm repo add radiantone https://radiantlogic-devops.github.io/helm
 
 Verify
 
-* To verify if the radiantone repo is added, run the command below
+* To verify that ```radiantone``` repo is added, run the command below
 
 ```console
 helm repo list
 ```
-In the output you should see "radiantone" added along with other repositories if you have any.
+In the output you should see ```radiantone``` added along with other repositories if you have any
 
 (Optional) To update the repo
 ```console
@@ -67,7 +67,6 @@ helm install --namespace=helm-lab zookeeper radiantone/zookeeper
 ```
 
 Verify
-
 * To verify if zookeeper has been deoployed successfully, run the command below
 
 ```console
@@ -106,7 +105,7 @@ helm install --namespace=helm-lab fid radiantone/fid \
 --set fid.rootPassword="test1234"
 ```
 
-**IMPORTANT NOTE** : Curly brackets in the liense must be escaped --set fid.license="\\{rlib\\}xxx"
+**IMPORTANT NOTE** : Curly brackets in the license key must be escaped --set fid.license="\\{rlib\\}xxx"
 
 Verify
 
@@ -172,25 +171,19 @@ helm list --namespace=helm-lab
 ```
 
 #### **Advanced**
-**Upgrade a FID Release (optional)**
-
-* To upgrade an existing or deployed zookeeper releasem, run the below command
+**Update FID version (optional)**
+* The FID cluster must be running at least 2 nodes to update the version
+* To upgrade an existing or deployed zookeeper release, run the below command
 
 ```console
 helm upgrade --namespace=helm-lab fid radiantone/fid --set image.tag=7.4.1-rc1
 ```
-**NOTE:** Check for the latest image releases [here](https://hub.docker.com/r/radiantone/fid/tags)
-
-Example:
-
-```console
-helm upgrade --namespace=helm-lab fid radiantone/fid --set image.tag = 7.4.0
-```
+**NOTE:** Check for the latest image releases if the new tag is available [here](https://hub.docker.com/r/radiantone/fid/tags)
 
 ## **Cleanup**
 
 
-* To remove the Zookeerp/ FID helm deployments run the commands below
+* To remove the Zookeeper/FID helm deployments run the commands below
 
 **Removing FID deployment**
 
@@ -217,7 +210,6 @@ helm uninstall --namespace=helm-lab zk
 ```
 
 Verify
-
 * To verify if the fid depoloyment has been deleted/removed run the command below
 
 ```
