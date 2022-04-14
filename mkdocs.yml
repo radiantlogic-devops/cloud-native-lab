@@ -1,5 +1,23 @@
 site_name: RadiantOne Cloud Native Lab
 
+# Copyright
+copyright: Copyright &copy; 2022 Radiant Logic, Inc.
+
+# Theme
+theme:
+  name: material
+  logo: r1small.jpg
+  nav_style: light
+  navigation_depth: 5
+  features:
+    #- navigation.expand
+    - navigation.sections
+    #- navigation.top
+    - navigation.tabs
+    - search.highlight
+    - search.share
+    - search.suggest    
+
 nav:
 - Home: index.md
 - Pre-requisites: prereqs.md
