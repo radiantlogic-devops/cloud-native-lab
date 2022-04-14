@@ -6,7 +6,7 @@ copyright: Copyright &copy; 2022 Radiant Logic, Inc.
 # Theme
 theme:
   name: material
-  logo: r1small.jpg
+  #logo: r1small.jpg
   nav_style: light
   navigation_depth: 5
   features:
