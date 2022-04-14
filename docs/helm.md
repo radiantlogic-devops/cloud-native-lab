@@ -215,7 +215,7 @@ helm list --namespace=helm-lab
 * To upgrade an existing or deployed zookeeper release, run the below command
 
 ```console
-helm upgrade --namespace=helm-lab fid radiantone/fid --set image.tag=7.4.1-rc1
+helm upgrade --namespace=helm-lab fid radiantone/fid --set image.tag=7.4.1 
 ```
 **NOTE:** Check for the latest image releases if the new tag is available [here](https://hub.docker.com/r/radiantone/fid/tags)
 
