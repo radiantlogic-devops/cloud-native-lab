@@ -20,12 +20,16 @@ theme:
 
 nav:
 - Home: index.md
-- Prerequisites: prereqs.md
+- Prerequisites:
+  - Setup: prereqs.md
+  - minikube: minikube.md
 - Docker: docker.md
 - Docker Compose: docker-compose.md
-- minikube: minikube.md
 - Kubernetes: kubernetes.md
 - Helm: helm.md
+- Advanced:
+  - Custom Images: custom-docker.md
+  - CFS: cfs.md
 - Troubleshooting: troubleshooting.md
 - Cheat Sheet:
   - Docker: docker-cheatsheet.md

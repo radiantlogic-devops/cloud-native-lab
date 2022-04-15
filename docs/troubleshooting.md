@@ -1,31 +1,39 @@
-## Docker
 ## Kubernetes
 
 ### If pods are not getting deployed
 
 ```console
-kubectl get events -n <name space>
+kubectl get events -n <namespace>
+```
+```
+kubectl describe po/fid-0 -n <namespace>
 ```
 
 ### Check if zookeeper is up and running
 
 ```console
-kubectl exec -it zookeeper-0 -- bash -c "export JAVA_HOME=/opt/radiantone/rli-zookeeper-external/jdk/jre/;/opt/radiantone/rli-zookeeper-external/zookeeper/bin/zkServer.sh status"
+kubectl exec -it zookeeper-0 -n <namespace> -- bash -c "export JAVA_HOME=/opt/radiantone/rli-zookeeper-external/jdk/jre/;/opt/radiantone/rli-zookeeper-external/zookeeper/bin/zkServer.sh status"
 ```
 
 ### Exec into an fid/zk container
 
 ```console
-kubectl exec -it zookeeper-0 -- /bin/bash
+kubectl exec -it zookeeper-0 -n <namespace> -- /bin/bash
 ```
 ```console
-kubectl exec -it fid-0 -- /bin/bash
+kubectl exec -it fid-0 -n <namespace> -- /bin/bash
 ```
 
 ### Run cluster.sh command
 
 ```console
-kubectl exec -it fid-0 -- cluster.sh list
+kubectl exec -it fid-0 -n <namespace> -- cluster.sh list
+```
+
+### List java processes
+
+```console
+kubectl exec -it fid-0 -n <namespace> -- /opt/radiantone/vds/jdk/bin/jps -lv
 ```
 
 ### Get kubernetes context
@@ -34,7 +42,7 @@ kubectl exec -it fid-0 -- cluster.sh list
 kubectl config get-contexts
 ```
 
-##DOCKER TROUBLESHOOTING
+## Docker
 
 ### Logs
 
@@ -103,9 +111,9 @@ docker exec [options] <container command> <command arguments>
 ```
 
 
-## DOCKER-COMPOSE TROUBELSHOOTING
+## Docker-Compose
 
-To get the proper usage of docker-compose command run the command below
+To get the usage of docker-compose command run the command below
 
 ```
 docker-compose -h

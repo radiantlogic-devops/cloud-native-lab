@@ -43,7 +43,7 @@ In the list of namespaces from the output you should see ```lab-00```
 #### Edit Manifest File (fid.yaml)
 
 * From the cloned/downloaded folder navigate to kubernetes/generic/00-cluster-local-zk folder and open the manifest file ```fid.yaml``` in your code editor.
-* Update the manifest file `kubernetes/generic/00-cluster-local-zk/fid.yaml` and paste the license key. Look for `PASTE_LICENSE_HERE`, replace and save the file.
+* Update the manifest file `kubernetes/generic/00-cluster-local-zk/fid.yaml` and paste the license key. Look for `PASTE_LICENSE_HERE`, replace it with a valid RadiantOne cluster license key and save the file.
 <br>
 <img src="../Images/AddLicenseStandalone.png" alt="License" style="height: 200px; width:300px;"/>
 <br> 
@@ -67,7 +67,7 @@ When the pod shows 1/1 running status, proceed to the next step. It could take a
 
 * To view logs
 ```
-kubectl logs -f fid-0 -n helm-lab
+kubectl logs -f fid-0 -n lab-00
 ```
 
 ####Accessing the Control Panel
@@ -151,7 +151,7 @@ kubectl create ns lab-01
 
 * From the cloned/downloaded folder navigate to kubernetes/generic/02-cluster-ext-zk folder and open the manifest file "fid.yaml" in your code editor
 * Update the manifest file `kubernetes/generic/02-cluster-ext-zk/fid.yaml` and update the following
-* License Key. Look for `PASTE_LICENSE_HERE`, replace and save the file.
+* License Key. Look for `PASTE_LICENSE_HERE`, replace it with a valid RadiantOne cluster license key and save the file.
 <br>
 <img src="../Images/license-ext.png" alt="license-ext" style="height: 300px; width:1000px;"/>
 
@@ -214,6 +214,11 @@ When the pod fid-0 shows 1/1 running status, proceed to next step
 
 It might take anywhere from 3 to 5 minutes for the pod to be ready
 
+Cluster status
+```
+kubectl exec -it fid-0 -n lab-01 -- cluster.sh list
+```
+
 ####Accessing the Control Panel
 
 * To access the control panel of FID, run the command below
@@ -270,9 +275,42 @@ Verify
 To verify if fid has been scaled down successfully, run the command below
 
 ```console
-kubectl get pods -n helm-lab
+kubectl get pods -n lab-01
 ```
 You will see 1 fid pod ```fid-0```
+
+### **Advanced (Optional)**
+#### **Update FID version**
+* The FID cluster must be running at least 2 nodes to update the version
+* Scale the statefulset to 2 replicas
+* This will perform a rolling update of each node
+* To upgrade an existing or deployed radiantone release, run the below command
+```console
+kubectl scale sts/fid --replicas=2 -n lab-01
+```
+```
+kubectl set image sts/fid fid=radiantone/fid:7.4.1 -n lab-01
+```
+
+#### Export Configuration
+* Export the configration of FID in the container
+```
+kubectl exec -it fid-0 -n lab-01 -- ./migrate.sh export lab-01-export.zip
+```
+* Copy file from container to local machine
+```
+kubectl cp fid-0:/opt/radiantone/vds/work/lab-01-export.zip lab-01-export.zip -n lab-01
+```
+
+#### Import Configuration
+* Copy file from local machine to container
+```
+kubectl cp lab-01-export.zip fid-0:/opt/radiantone -n lab-01
+```
+* Import the configration to FID in the container
+```
+kubectl exec -it fid-0 -n lab-01 -- ./migrate.sh import /opt/radiantone/lab-01-export.zip
+```
 
 ### **Cleanup**
 

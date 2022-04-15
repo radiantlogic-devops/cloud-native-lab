@@ -73,7 +73,7 @@ docker run -d --hostname=fid-0 --name fid-0 --network=zk-net --rm \
 -e CLUSTER=new -e ZK=external -e ZK_CONN_STR="zk-0:2181,zk-1:2181,zk-2:2181" \
 -e ZK_CLUSTER=docker-cluster -e ZK_PASSWORD=secret1234 \
 -e LICENSE="<FID Cluster License>" \
--p 17070:7070 12389:2389 radiantone/fid:7.4.0
+-p 17070:7070 -p 12389:2389 radiantone/fid:7.4.0
 ```
 #### node 2
 Start the second node only after the first node is completely up and running
@@ -82,7 +82,7 @@ docker run -d --hostname=fid-1 --name fid-1 --network=zk-net --rm \
 -e CLUSTER=new -e ZK=external -e ZK_CONN_STR="zk-0:2181,zk-1:2181,zk-2:2181" \
 -e ZK_CLUSTER=docker-cluster -e ZK_PASSWORD=secret1234 \
 -e LICENSE="<FID Cluster License>" \
--p 27070:7070 22389:2389 radiantone/fid:7.4.0
+-p 27070:7070 -p 22389:2389 radiantone/fid:7.4.0
 ```
 #### node 3
 Check the memory and CPU usage before running the third node
@@ -91,7 +91,7 @@ docker run -d --hostname=fid-2 --name fid-2 --network=zk-net --rm \
 -e CLUSTER=new -e ZK=external -e ZK_CONN_STR="zk-0:2181,zk-1:2181,zk-2:2181" \
 -e ZK_CLUSTER=docker-cluster -e ZK_PASSWORD=secret1234 \
 -e LICENSE="<FID Cluster License>" \
--p 37070:7070 32389:2389 radiantone/fid:7.4.0
+-p 37070:7070 -p 32389:2389 radiantone/fid:7.4.0
 ```
 
 For Mac M1 use this image ```radiantone/fid:7.4.0-arm64```

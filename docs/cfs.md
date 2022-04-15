@@ -1,0 +1,2 @@
+* Follow the instructions **[here](https://github.com/radiantlogic-devops/docker-compose/tree/master/09-cfs)** to run CFS in a docker container.
+* CFS container can only run on Windows hosts with Hyper-V enabled and Docker experimental features enabled.

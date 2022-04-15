@@ -6,7 +6,9 @@ This lab is divided into four sections:
 
 * [Docker](./docker.md)
 * [Docker Compose](./docker-compose.md)
-* [Kubernetes](kubernetes.md)
-* [Helm](helm.md)
+* [Kubernetes](./kubernetes.md)
+* [Helm](./helm.md)
 
-Commands from each section can be copied and run directly. Some optional steps can be skipped.
+Make sure that all the prerequistes are completed. Commands from each section can be copied and run directly. Some optional steps can be skipped.
+
+This is a self guided lab, if you need help anytime during the lab you can reach the team at **#cloud-native-tko2022** slack channel.

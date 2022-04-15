@@ -1,7 +1,7 @@
 ### **Docker**
 
 * docker desktop or docker runtime
-* For windows if available use ```Windows Terminal``` and connect to WSL
+* Allocate 16GB memory for Docker
 
 Find the link to install docker [here](https://docs.docker.com/get-docker/)
 

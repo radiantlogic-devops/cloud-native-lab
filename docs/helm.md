@@ -10,11 +10,11 @@ kubectl cluster-info
 kubectl get nodes
 ```
 
-## **Add Helm Repository**
+## **Helm Deployment**
 
 The radiantone helm repository is hosted at https://radiantlogic-devops.github.io/helm
 
-#### **radiantone repository**
+### **Add radiantone repository**
 
 * Run the command below to add ```radiantone``` repo
 
@@ -209,17 +209,18 @@ kubectl get pods -n helm-lab
 helm list --namespace=helm-lab
 ```
 
-#### **Advanced**
+### **Advanced**
 **Update FID version (optional)**
+
 * The FID cluster must be running at least 2 nodes to update the version
-* To upgrade an existing or deployed zookeeper release, run the below command
+* To upgrade an existing or deployed radiantone release, run the below command
 
 ```console
-helm upgrade --namespace=helm-lab fid radiantone/fid --set image.tag=7.4.1 
+helm upgrade --namespace=helm-lab fid radiantone/fid --set image.tag=7.4.1
 ```
 **NOTE:** Check for the latest image releases if the new tag is available [here](https://hub.docker.com/r/radiantone/fid/tags)
 
-## **Cleanup**
+### **Cleanup**
 
 
 * To remove the Zookeeper/FID helm deployments run the commands below
