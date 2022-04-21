@@ -18,10 +18,6 @@ All you need is Docker (or similarly compatible) container or a Virtual Machine 
 minikube config set memory 8192
 minikube config set cpus 4
 ```
-* On Windows (if needed)
-```
-minikube config set driver hyperv
-```
 * Validate the settings
 ```
 minikube config view
