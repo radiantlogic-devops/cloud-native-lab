@@ -28,7 +28,7 @@ https://github.com/radiantlogic-devops/kubernetes.git
 
 ### **Creating Namespace**
 ```
-kubcetl create ns lab-00
+kubectl create ns lab-00
 ```
 Verify:
 
