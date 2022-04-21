@@ -188,8 +188,14 @@ The default username/password is
 #### **Scaling Up FID**
 Add a new node to the cluster
 
+**Note: When using upgrade with `--set` option, all previously overridden settings must be passed, else it will overwrite with default values.
+
 ```console
-helm upgrade --namespace=helm-lab fid radiantone/fid --set replicaCount=2
+helm upgrade --namespace=helm-lab fid radiantone/fid --set replicaCount=2 \
+--set zk.connectionString="zookeeper:2181" \
+--set zk.ruok="http://zookeeper:8080/commands/ruok" \
+--set fid.license="<FID cluster license>" \
+--set fid.rootPassword="test1234"
 ```
 
 Verify
@@ -215,8 +221,15 @@ helm list --namespace=helm-lab
 * The FID cluster must be running at least 2 nodes to update the version
 * To upgrade an existing or deployed radiantone release, run the below command
 
+**Note: When using upgrade with `--set` option, all previously overridden settings must be passed, else it will overwrite with default values.
+
 ```console
-helm upgrade --namespace=helm-lab fid radiantone/fid --set image.tag=7.4.1
+helm upgrade --namespace=helm-lab fid radiantone/fid --set image.tag=7.4.1 \
+--set replicaCount=2 \
+--set zk.connectionString="zookeeper:2181" \
+--set zk.ruok="http://zookeeper:8080/commands/ruok" \
+--set fid.license="<FID cluster license>" \
+--set fid.rootPassword="test1234"
 ```
 **NOTE:** Check for the latest image releases if the new tag is available [here](https://hub.docker.com/r/radiantone/fid/tags)
 
