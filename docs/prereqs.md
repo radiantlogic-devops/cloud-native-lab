@@ -29,11 +29,6 @@ Find the link to install helm [here](https://helm.sh/docs/intro/install/)
 
 * A valid radiantone cluster license
 
-Temporary license
-```
-{rlib}x9TJ257h1a3ip9vEtsrF19Xa47PYypfGwc6Q2dPd2MHS26bVg9Td18Th6q/ik93cwsahztfP4HjU39nMxMLY0tDcsXyjlpuagZOUm5Oa3bCsl6qTlJGYnI6gpHyflJmTg5mRmZWltXmgm5qTlpGUmZGepHyhk8zVt8LY0tDcyLXczNzXs87UppKkqXyjnaKUi5KdnZqa4a3ntdjHt9Shng==
-```
-
 ### **Code editor**
 
 * A code editor of your choice (Vs-Code, Atom, Notepad++ etc.)
