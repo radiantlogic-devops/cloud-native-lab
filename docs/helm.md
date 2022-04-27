@@ -263,6 +263,7 @@ helm uninstall --namespace=helm-lab zk
 ```
 
 Verify
+
 * To verify if the fid depoloyment has been deleted/removed run the command below
 
 ```
