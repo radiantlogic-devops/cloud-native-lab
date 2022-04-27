@@ -49,9 +49,9 @@ helm template fid radiantone/fid
 
 ### **Installing FID/Zookeeper**
 
-####**Creating Namespace**
+#### **Creating Namespace**
 
-* Run the below command to create a new namespace to deploy FID/Zookeeper
+* Run the command below to create a new namespace to deploy FID/Zookeeper
 
 ```console
 kubectl create namespace helm-lab
@@ -59,10 +59,11 @@ kubectl create namespace helm-lab
 Verify:
 
 * To verify if the namespace has been created, run the command below
+
 ```console
 kubectl get namespace
 ```
-* You should see "helm-lab" in the list of outputs
+* You should see "helm-lab" in the output
 
 #### **Installing Zookeeper**
 
@@ -110,7 +111,27 @@ helm list --namespace=helm-lab
 
 **Install FID**
 
-Replace the "FID cluster license" with your license:
+#### Using values.yaml file
+
+Create a file called myfid.yaml with the following content
+
+```yaml
+zk:
+  connectionString: "zookeeper:2181"
+  ruok: "http://zookeeper:8080/commands/ruok"
+fid:
+  license: "<FID cluster license>"
+  rootPassword: "test1234"
+```
+Replace the "FID cluster license" with your license.
+
+Run the following command (use `--dry-run` option to validate the kubernetes manifest)
+
+```console
+helm install --namespace=helm-lab fid radiantone/fid -f myfid.yaml
+```
+
+#### Using `--set` command (not recommended)
 
 ```console
 helm install --namespace=helm-lab fid radiantone/fid \
@@ -121,6 +142,8 @@ helm install --namespace=helm-lab fid radiantone/fid \
 ```
 
 **IMPORTANT NOTE** : Curly brackets in the license key must be escaped --set fid.license="\\{rlib\\}xxx"
+
+Run the following command
 
 ```
 NAME: fid
@@ -188,6 +211,28 @@ The default username/password is
 #### **Scaling Up FID**
 Add a new node to the cluster
 
+#### Using value.yaml file
+
+Update myfid.yaml file and set replicaCount as 2. Make sure other values are unchanged.
+
+```yaml
+replicaCount: 2
+zk:
+  connectionString: "zookeeper:2181"
+  ruok: "http://zookeeper:8080/commands/ruok"
+fid:
+  license: "<FID cluster license>"
+  rootPassword: "test1234"
+```
+
+Run the command below (use `--dry-run` option to verify the changes)
+
+```console
+helm upgrade --install --namespace=helm-lab fid radiantone/fid -f myfid.yaml
+```
+
+#### Using `--set` command (not recommended)
+
 **Note: When using upgrade with `--set` option, all previously overridden settings must be passed, else it will overwrite with default values.
 
 ```console
@@ -220,6 +265,31 @@ helm list --namespace=helm-lab
 
 * The FID cluster must be running at least 2 nodes to update the version
 * To upgrade an existing or deployed radiantone release, run the below command
+
+
+#### Using value.yaml file
+
+Update myfid.yaml file and set image.tag as 7.4.1. Make sure other values are unchanged.
+
+```yaml
+image:
+  tag: "7.4.1"
+replicaCount: 2
+zk:
+  connectionString: "zookeeper:2181"
+  ruok: "http://zookeeper:8080/commands/ruok"
+fid:
+  license: "<FID cluster license>"
+  rootPassword: "test1234"
+```
+
+Run the command below (use `--dry-run` option to verify the changes)
+
+```console
+helm upgrade --install --namespace=helm-lab fid radiantone/fid -f myfid.yaml
+```
+
+#### Using `--set` command (not recommended)
 
 **Note: When using upgrade with `--set` option, all previously overridden settings must be passed, else it will overwrite with default values.
 
