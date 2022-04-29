@@ -11,4 +11,4 @@ This lab is divided into four sections:
 
 Make sure that all the prerequistes are completed. Commands from each section can be copied and run directly. Some optional steps can be skipped.
 
-This is a self guided lab, if you need help anytime during the lab you can reach the team at **#cloud-native-tko2022** slack channel.
+Please generate a PR if any changes need to made to this lab.
