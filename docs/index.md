@@ -11,4 +11,4 @@ This lab is divided into four sections:
 
 Make sure that all the prerequistes are completed. Commands from each section can be copied and run directly. Some optional steps can be skipped.
 
-Please generate a PR if any changes need to made to this lab.
+Please generate a PR if any changes need to be made to this lab.
