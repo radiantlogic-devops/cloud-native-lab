@@ -25,7 +25,7 @@ nav:
   - minikube: minikube.md
 - Docker: docker.md
 - Docker Compose: docker-compose.md
-- Kubernetes: kubernetes.md
+#- Kubernetes: kubernetes.md
 - Helm: helm.md
 - Advanced:
   - Custom Images: custom-docker.md
