@@ -31,7 +31,7 @@ helm repo list
 ```
 In the output you should see ```radiantone``` added along with other repositories if you have any
 
-(Optional) To update the repo
+(Recommended) To update the repo
 ```console
 helm repo update
 ```
