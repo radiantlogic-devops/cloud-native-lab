@@ -1,0 +1,1366 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.25">
+    
+    
+      
+        <title>Kubernetes - RadiantOne Cloud Native Lab</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.6543a935.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#before-you-start" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="RadiantOne Cloud Native Lab" class="md-header__button md-logo" aria-label="RadiantOne Cloud Native Lab" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            RadiantOne Cloud Native Lab
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Kubernetes
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7 0-.24-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91 1.61 0 2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08Z"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../prereqs/" class="md-tabs__link">
+          
+  
+  Prerequisites
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../docker/" class="md-tabs__link">
+        
+  
+    
+  
+  Docker
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../docker-compose/" class="md-tabs__link">
+        
+  
+    
+  
+  Docker Compose
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../helm/" class="md-tabs__link">
+        
+  
+    
+  
+  Helm
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../custom-docker/" class="md-tabs__link">
+          
+  
+  Advanced
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../troubleshooting/" class="md-tabs__link">
+        
+  
+    
+  
+  Troubleshooting
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../docker-cheatsheet/" class="md-tabs__link">
+          
+  
+  Cheat Sheet
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="RadiantOne Cloud Native Lab" class="md-nav__button md-logo" aria-label="RadiantOne Cloud Native Lab" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    RadiantOne Cloud Native Lab
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Prerequisites
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Prerequisites
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../prereqs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Setup
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../minikube/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    minikube
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../docker/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Docker
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../docker-compose/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Docker Compose
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../helm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Helm
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Advanced
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Advanced
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../custom-docker/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Custom Images
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../troubleshooting/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Troubleshooting
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Cheat Sheet
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            Cheat Sheet
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../docker-cheatsheet/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Docker
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../k8s-cheatsheet/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Kubernetes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#before-you-start" class="md-nav__link">
+    <span class="md-ellipsis">
+      Before you start
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Before you start">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#kubectl" class="md-nav__link">
+    <span class="md-ellipsis">
+      kubectl
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#manifest-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      Manifest files
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#standalone-fid" class="md-nav__link">
+    <span class="md-ellipsis">
+      Standalone FID
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Standalone FID">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#creating-namespace" class="md-nav__link">
+    <span class="md-ellipsis">
+      Creating Namespace
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Creating Namespace">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#edit-manifest-file-fidyaml" class="md-nav__link">
+    <span class="md-ellipsis">
+      Edit Manifest File (fid.yaml)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deploying-standalone-fid" class="md-nav__link">
+    <span class="md-ellipsis">
+      Deploying Standalone FID
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Deploying Standalone FID">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#check-status" class="md-nav__link">
+    <span class="md-ellipsis">
+      Check status
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#accessing-the-control-panel" class="md-nav__link">
+    <span class="md-ellipsis">
+      Accessing the Control Panel
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#accessing-ldap-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      Accessing LDAP Service
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cleanup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cleanup
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fid-with-external-zookeeper" class="md-nav__link">
+    <span class="md-ellipsis">
+      FID with External Zookeeper
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="FID with External Zookeeper">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#creating-namespace_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Creating Namespace
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Creating Namespace">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#edit-manifest-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      Edit Manifest File
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deploying-zookeeper" class="md-nav__link">
+    <span class="md-ellipsis">
+      Deploying Zookeeper
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Deploying Zookeeper">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#check-status_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Check status
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deploying-fid" class="md-nav__link">
+    <span class="md-ellipsis">
+      Deploying FID
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Deploying FID">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#check-status_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Check status
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#accessing-the-control-panel_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Accessing the Control Panel
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#accessing-ldap-service_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Accessing LDAP Service
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scaling-up-fid" class="md-nav__link">
+    <span class="md-ellipsis">
+      Scaling Up FID
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scaling-down-fid" class="md-nav__link">
+    <span class="md-ellipsis">
+      Scaling Down FID
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#advanced-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      Advanced (Optional)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Advanced (Optional)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#update-fid-version" class="md-nav__link">
+    <span class="md-ellipsis">
+      Update FID version
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#export-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Export Configuration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#import-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Import Configuration
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cleanup_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cleanup
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  <h1>Kubernetes</h1>
+
+<h2 id="before-you-start"><strong>Before you start</strong></h2>
+<ul>
+<li>FID or Zookeeper running locally on your machine are stopped.</li>
+<li>Make sure you have a running kubernetes cluster (minikube, EKS, AKS, GKE, k3s, k8s)</li>
+<li>If using minikube, see the minikube section</li>
+</ul>
+<h4 id="kubectl">kubectl</h4>
+<ul>
+<li>Make sure kubectl is configured to access the right cluster. You can verify that by running the following commands</li>
+</ul>
+<pre><code class="language-console">kubectl cluster-info
+</code></pre>
+<pre><code class="language-console">kubectl get nodes
+</code></pre>
+<h4 id="manifest-files">Manifest files</h4>
+<ul>
+<li>Clone the kubernetes manifest samples repo</li>
+</ul>
+<pre><code>git clone https://github.com/radiantlogic-devops/kubernetes.git
+</code></pre>
+<ul>
+<li>Alternatively you can download it from Github page, from internet browser go to</li>
+</ul>
+<pre><code>https://github.com/radiantlogic-devops/kubernetes.git
+</code></pre>
+<p><br>
+<img src="../Images/DOWNLOAD.png" alt="Download" style="height: 300px; width:1000px;"/>
+<br> </p>
+<h2 id="standalone-fid"><strong>Standalone FID</strong></h2>
+<h3 id="creating-namespace"><strong>Creating Namespace</strong></h3>
+<pre><code>kubectl create ns lab-00
+</code></pre>
+<p>Verify:</p>
+<ul>
+<li>To verify if the namespace is created, run the below command</li>
+</ul>
+<pre><code class="language-console">kubectl get namespace
+</code></pre>
+<p>In the list of namespaces from the output you should see <code>lab-00</code></p>
+<h4 id="edit-manifest-file-fidyaml">Edit Manifest File (fid.yaml)</h4>
+<ul>
+<li>From the cloned/downloaded folder navigate to kubernetes/generic/00-cluster-local-zk folder and open the manifest file <code>fid.yaml</code> in your code editor.</li>
+<li>Update the manifest file <code>kubernetes/generic/00-cluster-local-zk/fid.yaml</code> and paste the license key. Look for <code>PASTE_LICENSE_HERE</code>, replace it with a valid RadiantOne cluster license key and save the file.
+<br>
+<img src="../Images/AddLicenseStandalone.png" alt="License" style="height: 200px; width:300px;"/>
+<br> </li>
+<li>For Mac M1, update the image <code>radiantone/fid:7.4.0-arm64</code></li>
+</ul>
+<h3 id="deploying-standalone-fid"><strong>Deploying Standalone FID</strong></h3>
+<ul>
+<li>To deploy the standalone FID, run the command below (make sure to follow "Edit Manifest File" before running the command below)</li>
+</ul>
+<pre><code>kubectl apply -f kubernetes/generic/00-cluster-local-zk/fid.yaml -n lab-00
+</code></pre>
+<h4 id="check-status">Check status</h4>
+<ul>
+<li>To get the status of pods (Pending/Running/Succeeded/Failed/Unknown)</li>
+</ul>
+<pre><code>kubectl get po -n lab-00
+</code></pre>
+<p>When the pod shows 1/1 running status, proceed to the next step. It could take anywhere from 2 to 5 minutes to start.</p>
+<ul>
+<li>To view logs</li>
+</ul>
+<pre><code>kubectl logs -f fid-0 -n lab-00
+</code></pre>
+<h4 id="accessing-the-control-panel">Accessing the Control Panel</h4>
+<p>** Open a new command prompt for port forwarding.</p>
+<ul>
+<li>To access the control panel of FID, run the command below</li>
+</ul>
+<pre><code class="language-console">kubectl port-forward svc/fid-cp -n lab-00 7070 8089
+</code></pre>
+<p>Access the control panel at <strong><a href="http://localhost:7070">http://localhost:7070</a></strong></p>
+<p>Access the ADAP service at http://localhost:8089</p>
+<p>The default username/password is</p>
+<pre><code>cn=Directory Manager
+secret1234
+</code></pre>
+<h4 id="accessing-ldap-service"><strong>Accessing LDAP Service</strong></h4>
+<p>** Open a new command prompt for port forwarding.</p>
+<ul>
+<li>To access the LDAP service run the command below</li>
+</ul>
+<pre><code class="language-console">kubectl port-forward svc/fid -n lab-00 2389
+</code></pre>
+<p>Access the LDAP service at ldap://localhost:2389 from your LDAP browser</p>
+<p>The default username/password is</p>
+<pre><code>cn=Directory Manager
+test1234
+</code></pre>
+<h3 id="cleanup"><strong>Cleanup</strong></h3>
+<ul>
+<li>Run the command below to delete the above FID deployment</li>
+</ul>
+<pre><code class="language-console">kubectl delete -f kubernetes/generic/00-cluster-local-zk/fid.yaml -n lab-00
+</code></pre>
+<p>(If needed run this command to forcefully terminate the pod)</p>
+<pre><code>kubectl delete po/fid-0 -n lab-00 --force
+</code></pre>
+<p>Verify:</p>
+<p>To verify that the FID deployment has been sucessfully deleted, run the command below</p>
+<pre><code class="language-console">kubectl get all -n lab-00
+</code></pre>
+<p>You will no more see any zookeeper or fid pods. Once you verify that there are no zookeeper and FID pods, proceed to the next step</p>
+<ul>
+<li>Run the following command to delete the namespace created</li>
+</ul>
+<pre><code class="language-console">kubectl delete ns lab-00
+</code></pre>
+<p>Verify:</p>
+<p>To verify that the namespace has been deleted, run the command below</p>
+<pre><code class="language-console">kubectl get namespace
+</code></pre>
+<p>You should no more see the "lab-00" namespace in the list of namepsaces.</p>
+<h2 id="fid-with-external-zookeeper"><strong>FID with External Zookeeper</strong></h2>
+<h3 id="creating-namespace_1"><strong>Creating Namespace</strong></h3>
+<pre><code class="language-console">kubectl create ns lab-01
+</code></pre>
+<h4 id="edit-manifest-file">Edit Manifest File</h4>
+<ul>
+<li>From the cloned/downloaded folder navigate to kubernetes/generic/02-cluster-ext-zk folder and open the manifest file "fid.yaml" in your code editor</li>
+<li>Update the manifest file <code>kubernetes/generic/02-cluster-ext-zk/fid.yaml</code> and update the following</li>
+<li>License Key. Look for <code>PASTE_LICENSE_HERE</code>, replace it with a valid RadiantOne cluster license key and save the file.
+<br>
+<img src="../Images/license-ext.png" alt="license-ext" style="height: 300px; width:1000px;"/></li>
+</ul>
+<h3 id="deploying-zookeeper"><strong>Deploying Zookeeper</strong></h3>
+<ul>
+<li>Run the command below to deploy zookeeper</li>
+</ul>
+<pre><code class="language-console">kubectl apply -f kubernetes/generic/01-external-zk/zk.yaml -n lab-01
+</code></pre>
+<h4 id="check-status_1">Check status</h4>
+<p>To get the status of pods (Pending/Running/Succeeded/Failed/Unknown)</p>
+<pre><code class="language-console">kubectl get po -n lab-01
+</code></pre>
+<p>(use -w flag to watch the progress)</p>
+<pre><code class="language-console">kubectl get po -n lab-01 -w
+</code></pre>
+<p>You will see three pods (named zookeeper-0/1/2) </p>
+<p>When all the three pods show 1/1 running status, proceed to the next step</p>
+<p>(Optional) Check if zookeeper is up and running, and which node is the leader</p>
+<pre><code class="language-console">kubectl exec -it zookeeper-0 -n lab-01 -- bash -c &quot;export JAVA_HOME=/opt/radiantone/rli-zookeeper-external/jdk/jre/;/opt/radiantone/rli-zookeeper-external/zookeeper/bin/zkServer.sh status&quot;
+</code></pre>
+<pre><code class="language-console">kubectl exec -it zookeeper-1 -n lab-01 -- bash -c &quot;export JAVA_HOME=/opt/radiantone/rli-zookeeper-external/jdk/jre/;/opt/radiantone/rli-zookeeper-external/zookeeper/bin/zkServer.sh status&quot;
+</code></pre>
+<pre><code class="language-console">kubectl exec -it zookeeper-2 -n lab-01 -- bash -c &quot;export JAVA_HOME=/opt/radiantone/rli-zookeeper-external/jdk/jre/;/opt/radiantone/rli-zookeeper-external/zookeeper/bin/zkServer.sh status&quot;
+</code></pre>
+<h3 id="deploying-fid"><strong>Deploying FID</strong></h3>
+<ul>
+<li>Run the command below to deploy FID (1 node)</li>
+</ul>
+<pre><code class="language-console">kubectl apply -f kubernetes/generic/02-cluster-ext-zk/fid.yaml -n lab-01
+</code></pre>
+<h4 id="check-status_2">Check status</h4>
+<p>To get the status of pods (Pending/Running/Succeeded/Failed/Unknown)</p>
+<pre><code class="language-console">kubectl get po -n lab-01
+</code></pre>
+<p>You will see one pod  (named fid-0)</p>
+<p>To check the logs and see the progress or see the progress on the kubernetes dashboard</p>
+<pre><code class="language-console">kubectl logs -f fid-0 -n lab-01
+</code></pre>
+<p>When the pod fid-0 shows 1/1 running status, proceed to next step</p>
+<p>It might take anywhere from 3 to 5 minutes for the pod to be ready</p>
+<p>Cluster status</p>
+<pre><code>kubectl exec -it fid-0 -n lab-01 -- cluster.sh list
+</code></pre>
+<h4 id="accessing-the-control-panel_1">Accessing the Control Panel</h4>
+<ul>
+<li>To access the control panel of FID, run the command below</li>
+</ul>
+<pre><code class="language-console">kubectl port-forward svc/fid-cp -n lab-01 7070 8089
+</code></pre>
+<p>Access the control panel at <strong><a href="http://localhost:7070">http://localhost:7070</a></strong></p>
+<p>The default username/password is</p>
+<pre><code>cn=Directory Manager
+secret1234
+</code></pre>
+<h4 id="accessing-ldap-service_1"><strong>Accessing LDAP Service</strong></h4>
+<ul>
+<li>To access the LDAP service run the command below</li>
+</ul>
+<pre><code class="language-console">kubectl port-forward svc/fid -n lab-00 2389
+</code></pre>
+<p>Access the LDAP service at ldap://localhost:2389 from your LDAP browser</p>
+<p>The default username/password is</p>
+<pre><code>cn=Directory Manager
+test1234
+</code></pre>
+<h4 id="scaling-up-fid"><strong>Scaling Up FID</strong></h4>
+<ul>
+<li>Add a new node to the cluster</li>
+</ul>
+<pre><code class="language-console">kubectl scale sts/fid --replicas=2 -n lab-01
+</code></pre>
+<p>Verify</p>
+<p>To verify if fid has been scaled up successfully, run the command below</p>
+<pre><code class="language-console">kubectl get pods -n lab-01
+</code></pre>
+<p>You will see 2 fid pods <code>fid-0 fid-1</code></p>
+<h4 id="scaling-down-fid"><strong>Scaling Down FID</strong></h4>
+<ul>
+<li>Remove a node from the cluster</li>
+</ul>
+<pre><code class="language-console">kubectl scale sts/fid --replicas=1 -n lab-01
+</code></pre>
+<p>Verify</p>
+<p>To verify if fid has been scaled down successfully, run the command below</p>
+<pre><code class="language-console">kubectl get pods -n lab-01
+</code></pre>
+<p>You will see 1 fid pod <code>fid-0</code></p>
+<h3 id="advanced-optional"><strong>Advanced (Optional)</strong></h3>
+<h4 id="update-fid-version"><strong>Update FID version</strong></h4>
+<ul>
+<li>The FID cluster must be running at least 2 nodes to update the version</li>
+<li>Scale the statefulset to 2 replicas</li>
+<li>This will perform a rolling update of each node</li>
+<li>To upgrade an existing or deployed radiantone release, run the below command</li>
+</ul>
+<pre><code class="language-console">kubectl scale sts/fid --replicas=2 -n lab-01
+</code></pre>
+<pre><code>kubectl set image sts/fid fid=radiantone/fid:7.4.1 -n lab-01
+</code></pre>
+<h4 id="export-configuration">Export Configuration</h4>
+<ul>
+<li>Export the configration of FID in the container</li>
+</ul>
+<pre><code>kubectl exec -it fid-0 -n lab-01 -- ./migrate.sh export lab-01-export.zip
+</code></pre>
+<ul>
+<li>Copy file from container to local machine</li>
+</ul>
+<pre><code>kubectl cp fid-0:/opt/radiantone/vds/work/lab-01-export.zip lab-01-export.zip -n lab-01
+</code></pre>
+<h4 id="import-configuration">Import Configuration</h4>
+<ul>
+<li>Copy file from local machine to container</li>
+</ul>
+<pre><code>kubectl cp lab-01-export.zip fid-0:/opt/radiantone -n lab-01
+</code></pre>
+<ul>
+<li>Import the configration to FID in the container</li>
+</ul>
+<pre><code>kubectl exec -it fid-0 -n lab-01 -- ./migrate.sh import /opt/radiantone/lab-01-export.zip
+</code></pre>
+<h3 id="cleanup_1"><strong>Cleanup</strong></h3>
+<ul>
+<li>Run the command below to delete the FID deployment</li>
+</ul>
+<pre><code class="language-console">kubectl delete -f kubernetes/generic/02-cluster-ext-zk/fid.yaml -n lab-01
+</code></pre>
+<p>Verify:</p>
+<p>To verify that the FID deployment has been deleted, run the command below</p>
+<pre><code class="language-console">kubectl get all -n lab-01
+</code></pre>
+<ul>
+<li>Run the command below to delete the zookeeper deployment</li>
+</ul>
+<pre><code class="language-console">kubectl delete -f kubernetes/generic/01-external-zk/zk.yaml -n lab-01
+</code></pre>
+<p>Verify:</p>
+<p>To verify that the Zookeeper deployment has been sucessfully deleted, run the command below</p>
+<pre><code class="language-console">kubectl get all -n lab-01
+</code></pre>
+<ul>
+<li>Run the following command to delete the namespace created</li>
+</ul>
+<pre><code class="language-console">kubectl delete ns lab-01
+</code></pre>
+<p>Verify:</p>
+<p>To verify that the namespace has been deleted, run the command below</p>
+<pre><code class="language-console">kubectl get ns
+</code></pre>
+<p>You should no more see the "lab-01" namespace in the list fo namespaces.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2022 Radiant Logic, Inc.
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.expand", "navigation.sections", "navigation.top", "navigation.tabs", "search.highlight", "search.share", "search.suggest"], "search": "../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.081f42fc.min.js"></script>
+      
+    
+  </body>
+</html>
