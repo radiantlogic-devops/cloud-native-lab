@@ -29,7 +29,7 @@ nav:
 - Helm: helm.md
 - Advanced:
   - Custom Images: custom-docker.md
-  - CFS: cfs.md
+  #- CFS: cfs.md
 - Troubleshooting: troubleshooting.md
 - Cheat Sheet:
   - Docker: docker-cheatsheet.md
