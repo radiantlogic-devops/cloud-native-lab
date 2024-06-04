@@ -116,6 +116,8 @@ helm list --namespace=helm-lab
 Create a file called myfid.yaml with the following content
 
 ```yaml
+image:
+  tag: "7.4.9"
 fid:
   license: "<FID cluster license>"
   rootPassword: "test1234"
@@ -259,11 +261,11 @@ helm list --namespace=helm-lab
 
 #### Using value.yaml file
 
-Update myfid.yaml file and set image.tag as 7.4.1. Make sure other values are unchanged.
+Update myfid.yaml file and set image.tag as 7.4.10. Make sure other values are unchanged.
 
 ```yaml
 image:
-  tag: "7.4.3"
+  tag: "7.4.10"
 replicaCount: 2
 fid:
   license: "<FID cluster license>"
@@ -282,6 +284,7 @@ helm upgrade --install --namespace=helm-lab fid radiantone/fid -f myfid.yaml
 
 ```console
 helm upgrade --namespace=helm-lab fid radiantone/fid --set image.tag=7.4.1 \
+--set image.tag=7.4.10 \
 --set replicaCount=2 \
 --set fid.license="<FID cluster license>" \
 --set fid.rootPassword="test1234"
@@ -307,7 +310,7 @@ Verify
 kubectl get all -n helm-lab
 ```
 
-You not see any fid pods, move to the next step
+You should not see any fid pods, move to the next step
 
 **Removing Zookeeper Deployment**
 
@@ -325,7 +328,7 @@ Verify
 kubectl get all -n helm-lab
 ```
 
-You will not see any zookeeper pods.
+You should not see any zookeeper pods.
 
 **Delete Namespace**
 
@@ -343,7 +346,7 @@ Verify
 kubectl get namespace
 ```
 
-You will not find the "helm-lab" in the list of namespaces.
+You should not find the "helm-lab" in the list of namespaces.
 
 
 
